@@ -72,10 +72,6 @@ router.post('/', function(req,res){
     return;
   }
 
-  // validation complete
-  console.log('the new item is', newItem);
-  console.log('the parent is', req.parentList)
-  
   newItem.save();
   req.parentList.items.push(newItem);
   req.parentList.save();
