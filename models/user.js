@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Session = require("./session");
 
 userSchema = new Schema({
 	firstName: String,
