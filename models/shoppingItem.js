@@ -3,9 +3,7 @@ var Schema = mongoose.Schema;
 
 shoppingItemSchema = new Schema({
 	name: String,
-	priceMin: Number,
-	priceMax: Number,
-	comments: String,
+	notes: String,
 	createdAt: Date,
 	updatedAt: Date
 });
