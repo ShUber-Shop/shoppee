@@ -37,7 +37,19 @@ router.post('/signin', function(req, res, next) {
                         } else {
                             // Authentication Succeeded
                             res.setHeader('Content-Type', 'application/json');
-                            var authObj = { auth: true, session: session._id };
+
+                            var authObj = {
+                                auth: true,
+                                session: session._id,
+                                user: {
+                                   "isConsumer": user.isConsumer,
+                                   "firstName": user.firstName,
+                                   "lastName": user.lastName,
+                                   "mail": user.mail,
+                                   "email": user.email
+                                }
+                            };
+
                             res.send(JSON.stringify(authObj));
                         }
                     }
