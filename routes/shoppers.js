@@ -101,7 +101,6 @@ router.post('/signup', function(req, res, next) {
                         }
                     }
                 });
-				res.json(u);
 				return;
             } else {
                 // a user with that email already exists

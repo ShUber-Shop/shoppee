@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 jobSchema = new Schema({
 	list: { type: mongoose.Schema.ObjectId, ref: 'ShoppingList' },
 	shopper: { type: mongoose.Schema.ObjectId, ref: 'User' },
-	done: Boolean,
+	done: { type: Boolean, default: false },
 	createdAt: Date,
 	updatedAt: Date,
-	offer: Number,
-	accepted: Boolean
+	offer: { type: Number, default: 0.0 },
+	accepted: { type: Boolean, default: false }
 });
 
 // on every save, add the date

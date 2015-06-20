@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1', function(req, res, next) {
     var path = url.parse(req.url).pathname;
 	console.log("Got a request for, " + path);
-    if(path == '/consumers/signin' || path == '/shoppers/signin'){
+    if(path == '/consumers/signin' || path == '/shoppers/signin' || path == '/consumers/signup' || path == '/shoppers/signup'){
         var sessionId = req.body.session;
         if(!sessionId) {
             sessionId = req.query.session;
