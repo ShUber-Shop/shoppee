@@ -12,7 +12,7 @@ router.post('/signin', function(req, res, next) {
         res.send(JSON.stringify({ auth: false, message: 'You must provide both an email and password in the body of the request' }));
         return;
     }
-    User.findOne({ email: email }, 'email', function(err, user) {
+    User.findOne({ email: email }, function(err, user) {
         if (err) {
             console.log("error");
             console.error(err);
