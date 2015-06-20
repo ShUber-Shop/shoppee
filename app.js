@@ -15,7 +15,7 @@ var shoppingLists = require('./routes/shoppingLists');
 var jobs = require('./routes/jobs');
 
 var User = require('./models/user');
-
+var Session = require('./models/session');
 
 var app = express();
 
