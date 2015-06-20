@@ -61,7 +61,6 @@ router.post('/', function(req, res, next) {
     name: req.body.name,
     consumer: req.currentUser._id,
     items: [],
-    looking: true,
   })
 
   // save that list
