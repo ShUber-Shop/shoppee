@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 
 shoppingListSchema = new Schema({
 	name: String,
+	consumer: { type: mongoose.Schema.ObjectId, ref: 'User' },
+	shopper: { type: mongoose.Schema.ObjectId, ref: 'User' },
 	items: [{ type: mongoose.Schema.ObjectId, ref: 'ShoppingItem' }],
 	looking: Boolean,
 	createdAt: Date,
