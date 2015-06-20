@@ -5,21 +5,21 @@ var Schema = mongoose.Schema;
 var sessionSchema = new Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   expires_at: Date,
-  created_at: Date,
-  updated_at: Date
+  createdAt: Date,
+  updatedAt: Date
 });
 
 sessionSchema.pre('save', function(next) {
   var currentDate = new Date();
   
-  this.updated_at = currentDate;
+  this.updatedAt = currentDate;
 
-  if (!this.created_at) {
+  if (!this.createdAt) {
     var daysThatSessionWillLast = 3;
     var expirationDate = new Date();
     expirationDate.setDate(currentDate.getDate + daysThatSessionWillLast);
     this.expires_at = expirationDate;
-    this.created_at = currentDate;
+    this.createdAt = currentDate;
   }
 
   next();

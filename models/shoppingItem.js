@@ -15,12 +15,12 @@ shoppingItemSchema.pre('save', function(next) {
 	// get the current date
 	var currentDate = new Date();
 
-	// change the updated_at field to current date
-	this.updated_at = currentDate;
+	// change the updatedAt field to current date
+	this.updatedAt = currentDate;
 
-	// if created_at doesn't exist, add to that field
-	if (!this.created_at)
-	this.created_at = currentDate;
+	// if createdAt doesn't exist, add to that field
+	if (!this.createdAt)
+	this.createdAt = currentDate;
 
 	next();
 });
