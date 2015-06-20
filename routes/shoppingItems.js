@@ -34,7 +34,18 @@ router.all('*', function(req,res,next){
 });
 
 
-// no root route, covered in shoppingLIsts.js
+router.get('/', function(req, res) {
+	ShoppingList.findById(req.params.list_id).populate('items').exec(function(err, list) {
+		if (err) {
+			console.log("error");
+			console.error(err);
+			res.send(err);
+			return;
+    	} else {
+			res.json({ items: list.items })
+		}
+	});
+});
 
 
 // return a single item
