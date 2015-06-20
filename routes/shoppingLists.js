@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ShoppingList = require('../models/shoppingList');
 
-var clientListFields = 'name shopper consumer looking items createdAt updatedAt'
+var clientListFields = 'name shopper consumer address looking items createdAt updatedAt'
 
 // return all lists, unordered
 router.get('/', function(req, res, next) {
@@ -50,18 +50,19 @@ router.post('/', function(req, res, next) {
 
   // validate by checking if name exists
 
-  if(!req.body.name){
+  if(!req.body.name || !req.body.address){
     res.status(401);
     res.json({message: 'You must provide a list name' });
     return;
-  };
+  }
 
   // create a the new list
   var newList = new ShoppingList({
     name: req.body.name,
+	address: req.body.address,
     consumer: req.currentUser._id,
     items: [],
-  })
+  });
 
   // save that list
   newList.save();

@@ -58,23 +58,15 @@ router.get('/:item_id', function(req,res){
 // add an item
 router.post('/', function(req,res){
 
-  var newItem = {
+  var newItem = new ShoppingItem({
     name: req.body.name,
-    priceMin: parseInt(req.body.priceMin),
-    priceMax: parseInt(req.body.priceMax)
-  };
+    notes: req.body.notes
+  });
 
   // validation
   if(!newItem.name){
     var err = 'You must specify a name'
-  }else if (!(newItem.priceMin >= 0)) {
-    var err = 'You must specify a min price that is 0 or greater'
-  }else if (!(newItem.priceMax >= newItem.priceMin)) {
-    var err = 'You must specify a max price that is greater than minPrice'
-  };
-
-  if(err){
-    console.log('err', err);
+	console.log('err', err);
     res.status(401);
     res.json(err);
     return;
@@ -83,6 +75,8 @@ router.post('/', function(req,res){
   // validation complete
   console.log('the new item is', newItem);
   console.log('the parent is', req.parentList)
+  
+  newItem.save();
   req.parentList.items.push(newItem);
   req.parentList.save();
   // res.json({})

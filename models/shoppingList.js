@@ -6,7 +6,7 @@ shoppingListSchema = new Schema({
 	address: String,
 	items: [{ type: mongoose.Schema.ObjectId, ref: 'ShoppingItem' }],
 	consumer: { type: mongoose.Schema.ObjectId, ref: 'User' },
-	looking: {type: Boolean, default: false},
+	looking: { type: Boolean, default: false },
 	createdAt: Date,
 	updatedAt: Date
 });
