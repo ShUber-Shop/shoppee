@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 reviewSchema = new Schema({
 	by: { type: mongoose.Schema.ObjectId, ref: 'User' },
 	for: { type: mongoose.Schema.ObjectId, ref: 'User' },
-	rating: Integer,
+	rating: Number,
 	comment: String,
 	createdAt: Date,
 	updatedAt: Date

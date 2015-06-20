@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 shoppingItemSchema = new Schema({
 	name: String,
-	priceMin: Float,
-	priceMax: Float,
+	priceMin: Number,
+	priceMax: Number,
 	comments: String,
 	createdAt: Date,
 	updatedAt: Date
