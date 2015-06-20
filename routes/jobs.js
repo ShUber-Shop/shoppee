@@ -1,15 +1,15 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({mergeParams:true});
 
 var Job = require('../models/job');
 var User = require('../models/user');
 
 /* GET index the jobs for a single list */
 router.get('/', function(req, res, next) {
-	var listId = req.body.listId;
+	var listId = req.params.list_id;
 	if(!listId){
 		res.status(401);
-		res.json({ message: "Need listId in body!!!" });
+		res.json({ message: "Need listid" });
 		return;
 	}
 	Job.find({ list: listId }, function(err, jobs) {
@@ -19,10 +19,10 @@ router.get('/', function(req, res, next) {
 
 /* POST create a new job */
 router.post('/', function(req, res) {
-	var listId = req.body.listId;
+	var listId = req.params.list_id;
 	if(!listId){
 		res.status(401);
-		res.json({ message: "Need listId in body!!!" });
+		res.json({ message: "Need listid" });
 		return;
 	}
 	User.find({ isConsumer: false }, function(err, users) {

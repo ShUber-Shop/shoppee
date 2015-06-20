@@ -103,7 +103,7 @@ app.use('/api/v1/consumers', consumers);
 app.use('/api/v1/shoppers', shoppers);
 app.use('/api/v1/lists', shoppingLists);
 app.use('/api/v1/lists/:list_id/items', shoppingItems);
-app.use('/api/v1/jobs', jobs);
+app.use('/api/v1/lists/:list_id/jobs', jobs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
