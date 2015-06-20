@@ -8,6 +8,7 @@ jobSchema = new Schema({
 	createdAt: Date,
 	updatedAt: Date,
 	offer: { type: Number, default: 0.0 },
+	deposit: { type: Boolean, default: false },
 	accepted: { type: Boolean, default: false }
 });
 

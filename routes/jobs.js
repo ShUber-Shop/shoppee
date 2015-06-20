@@ -34,9 +34,32 @@ router.post('/', function(req, res) {
 	res.json({ ok: true });
 });
 
+/* POST accept an offer */
+router.post('/accept', function(req, res) {
+	var jobId = req.params.job_id;
+	if(jobId) {
+		req.status(401);
+		req.json({ message: "Need jobid" });
+		return;
+	}
+	Job.findById(jobId, function(err, job) {
+		job.accepted = true;
+		job.deposit = true;
+		job.save();
+		res.json(job);
+	});
+});
+
 /* GET a job */
 router.get('/:job_id', function(req, res) {
-	
+	if(!req.params.job_id) {
+		req.status(401);
+		req.json({ message: "Need jobid" });
+		return;
+	}
+	Job.findById(req.params.job_id).populate("shopper").exec(function(err, job) {
+		res.json(job);
+	});
 });
 
 
