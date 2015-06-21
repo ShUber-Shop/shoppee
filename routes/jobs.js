@@ -35,9 +35,10 @@ router.post('/', function(req, res) {
 });
 
 /* POST accept an offer */
-router.post('/accept', function(req, res) {
+router.post('/:job_id/accept', function(req, res) {
+	console.log("In the accept method");
 	var jobId = req.params.job_id;
-	if(jobId) {
+	if(!jobId) {
 		req.status(401);
 		req.json({ message: "Need jobid" });
 		return;
@@ -45,6 +46,36 @@ router.post('/accept', function(req, res) {
 	Job.findById(jobId, function(err, job) {
 		job.accepted = true;
 		job.deposit = true;
+		job.save();
+		res.json(job);
+	});
+});
+
+/* POST pay for an order */
+router.post('/:job_id/pay', function(req, res) {
+	var jobId = req.params.job_id;
+	if(!jobId) {
+		req.status(401);
+		req.json({ message: "Need jobid" });
+		return;
+	}
+	Job.findById(jobId, function(err, job) {
+		job.paid = true;
+		job.save();
+		res.json(job);
+	});
+});
+
+/* POST finish an order */
+router.post('/:job_id/finish', function(req, res) {
+	var jobId = req.params.job_id;
+	if(!jobId) {
+		req.status(401);
+		req.json({ message: "Need jobid" });
+		return;
+	}
+	Job.findById(jobId, function(err, job) {
+		job.done = true;
 		job.save();
 		res.json(job);
 	});

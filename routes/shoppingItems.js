@@ -86,8 +86,7 @@ router.post('/', function(req,res){
   newItem.save();
   req.parentList.items.push(newItem);
   req.parentList.save();
-  // res.json({})
-
+  res.json(newItem);
 });
 
 module.exports = router;
